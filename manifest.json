@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Date",
+  "description": "Detect dates in emails..",
+  "version": "0.0.1",
+  "author": "Corentin Cadiou",
+  "applications": {
+      "gecko": {
+          "id": "data-detection@cphyc.me",
+          "strict_min_version": "66.0"
+      }
+  },
+  "message_display_action": {
+    "default_popup": "popup.html",
+    "default_title": "Action"
+  },
+  "permissions": [
+    "messagesRead",
+    "messagesModify"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
+}
