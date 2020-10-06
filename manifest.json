@@ -22,5 +22,21 @@
     "scripts": [
       "background.js"
     ]
+  },
+  "experiment_apis": {
+    "eventCreator": {
+      "schema": "schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "eventCreator"
+          ]
+        ],
+        "script": "implementation.js"
+      }
+    }
   }
 }

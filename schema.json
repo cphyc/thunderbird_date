@@ -1,0 +1,32 @@
+[
+    {
+      "namespace": "eventCreator",
+      "functions": [
+        {
+          "name": "createNewEventWindow",
+          "description": "Create a new event.",
+          "type": "function",
+          "async": true,
+          "parameters": [
+            {
+              "name": "startDateTime",
+              "description": "Start of the event",
+              "type": "string"
+            },
+            {
+              "name": "endTime",
+              "description": "End of the event",
+              "optional": true,
+              "type": "string"
+            },
+            {
+              "name": "title",
+              "description": "Title of the event",
+              "optional": true,
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
