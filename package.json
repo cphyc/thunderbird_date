@@ -24,6 +24,7 @@
     "homepage": "https://github.com/cphyc/thunderbird_date#readme",
     "webExt": {
         "ignoreFiles": [
+            "imgs",
             "*.png",
             "*.svg"
         ]
