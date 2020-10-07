@@ -1,0 +1,32 @@
+{
+    "name": "thunderbird_date",
+    "version": "0.0.1",
+    "description": "Detect dates in emails and create event easily.",
+    "main": "background.js",
+    "scripts": {
+        "build": "web-ext build",
+        "lint": "web-ext lint",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cphyc/thunderbird_date.git"
+    },
+    "keywords": [
+        "thunderbird",
+        "webextension"
+    ],
+    "author": "Corentin Cadiou",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/cphyc/thunderbird_date/issues"
+    },
+    "homepage": "https://github.com/cphyc/thunderbird_date#readme",
+    "webExt": {
+        "ignoreFiles": ["*.png/"]
+    },
+    "dependencies": {
+        "chrono-node": "^1.3.5",
+        "web-ext": "2.6"
+    }
+}
