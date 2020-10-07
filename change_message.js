@@ -1,3 +1,5 @@
+import * as chrono from 'chrono-node';
+
 var oldHTML = document.body.innerHTML;
 var newHTML = oldHTML;
 var results = chrono.parse(oldHTML);
