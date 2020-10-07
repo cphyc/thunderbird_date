@@ -2,12 +2,12 @@
   "manifest_version": 2,
   "name": "Date",
   "description": "Detect dates in emails and create event easily.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Corentin Cadiou",
   "applications": {
       "gecko": {
           "id": "data-detection@cphyc.me",
-          "strict_min_version": "66.0"
+          "strict_min_version": "82.0"
       }
   },
   "permissions": [
