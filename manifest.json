@@ -16,7 +16,7 @@
   ],
   "background": {
     "scripts": [
-      "background.js"
+      "src/background.js"
     ]
   },
   "experiment_apis": {
@@ -31,7 +31,7 @@
             "eventCreator"
           ]
         ],
-        "script": "implementation.js"
+        "script": "src/implementation.js"
       }
     }
   }
