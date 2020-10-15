@@ -12,6 +12,7 @@ scope.openDialog = scope.window.openDialog.bind(scope.window);
 Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-management.js", scope, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-views-utils.js", scope, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-item-editing.js", scope, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://global/content/globalOverlay.js", scope, "UTF-8");
 
 
 // Build the experiment API
