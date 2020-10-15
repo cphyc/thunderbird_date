@@ -12,6 +12,6 @@ browser.runtime.onMessage.addListener((message) => {
 // Inject the content script
 let myPromise = messenger.messageDisplayScripts.register({
     js: [
-        { file: "/src/dist/change_message.bundle.js"}
+        { file: "/dist/change_message.bundle.js"}
     ],
 });

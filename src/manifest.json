@@ -6,7 +6,7 @@
   "author": "Corentin Cadiou",
   "applications": {
       "gecko": {
-          "id": "data-detection@cphyc.me",
+          "id": "date-detection@cphyc.me",
           "strict_min_version": "82.0"
       }
   },
@@ -16,7 +16,7 @@
   ],
   "background": {
     "scripts": [
-      "src/background.js"
+      "background.js"
     ]
   },
   "experiment_apis": {
@@ -31,7 +31,7 @@
             "eventCreator"
           ]
         ],
-        "script": "src/implementation.js"
+        "script": "implementation.js"
       }
     }
   }

@@ -5,7 +5,7 @@ var newHTML = oldHTML;
 var results = chrono.parse(oldHTML);
 
 function generateLink(info) {
-    return `<abbr class="clickme" title="Create event at ${info.startHuman}"` +
+    return `<abbr class="_dateDetectorClickClass" title="Create event at ${info.startHuman}"` +
             `id='${JSON.stringify(info)}'>${info.text}</abbr>`;
 }
 // TODO: we want to use https://github.com/wanasit/chrono/tree/v1.x.x#parsing-options
@@ -31,11 +31,8 @@ results
     });
 
 document.body.innerHTML = newHTML;
-function createEvent(dateInfo) {
-    browser.eventCreator.createNewEventWindow("foo", "bar", "baz");
-}
 
-var links = document.body.getElementsByClassName("clickme");
+var links = document.body.getElementsByClassName("_dateDetectorClickClass");
 Array.prototype.forEach.call(
     links,
     date => {
