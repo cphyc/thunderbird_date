@@ -18,10 +18,11 @@ git clone https://github.com/cphyc/thunderbird_date.git
 cd thunderbird_date
 # Install the requirements
 npm install
-# Generate the bundle
+# Generate the bundled file `src/dist/change_message.bundled.js`
 npm run bundle
 # Create the extension
 npm run webext
 ```
-You can then install the extension by loading it directly in Thunderbird using the generated `.zip` file located in `thunderbird_date/web-ext-artifacts/`.
+
+Once the extension has been generated, load in from `thunderbird_date/web-ext-artifacts/`.
 Note that if you install this way, you need to manually update the repository, rebuild the extension and reload it in Thunderbird in order to update it.
