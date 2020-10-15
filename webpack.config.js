@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
   entry: './src/change_message.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'change_message.js'
+    path: path.resolve(__dirname, 'src/dist'),
+    filename: 'change_message.bundle.js'
   },
   mode: "production"
 };

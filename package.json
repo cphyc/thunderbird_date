@@ -4,7 +4,9 @@
     "description": "Detect dates in emails and create event easily.",
     "main": "background.js",
     "scripts": {
-        "build": "webpack && web-ext build",
+        "bundle": "webpack",
+        "webext": "web-ext build",
+        "build": "npm run bundle && npm run webext",
         "lint": "web-ext lint",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -23,10 +25,9 @@
     },
     "homepage": "https://github.com/cphyc/thunderbird_date#readme",
     "webExt": {
+        "sourceDir": "src",
         "ignoreFiles": [
-            "imgs",
-            "*.png",
-            "*.svg"
+            "change_message.js"
         ]
     },
     "devDependencies": {
