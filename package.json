@@ -1,6 +1,6 @@
 {
     "name": "thunderbird_date",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Detect dates in emails and create event easily.",
     "main": "background.js",
     "scripts": {
