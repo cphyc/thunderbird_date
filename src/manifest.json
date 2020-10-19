@@ -6,7 +6,7 @@
   "author": "Corentin Cadiou",
   "applications": {
       "gecko": {
-          "id": "date-detection@cphyc.me",
+          "id": "data-detection@cphyc.me",
           "strict_min_version": "82.0"
       }
   },
