@@ -5,8 +5,9 @@ var newHTML = oldHTML;
 var results = chrono.parse(oldHTML);
 
 function generateLink(info) {
+    let id_json = encodeURI(JSON.stringify(info));
     return `<abbr class="_dateDetectorClickClass" title="Create event at ${info.startHuman}"` +
-            `id='${JSON.stringify(info)}'>${info.text}</abbr>`;
+            `id="${id_json}">${info.text}</abbr>`;
 }
 // TODO: we want to use https://github.com/wanasit/chrono/tree/v1.x.x#parsing-options
 // with the date at which the email was received
@@ -32,12 +33,14 @@ results
 
 document.body.innerHTML = newHTML;
 
-var links = document.body.getElementsByClassName("_dateDetectorClickClass");
-Array.prototype.forEach.call(
-    links,
-    date => {
-        let dateInfo = JSON.parse(date.id);
-        date.addEventListener('click', event => {
-            browser.runtime.sendMessage(dateInfo);
-        });
+function createEvent(link) {
+    let dateInfo = JSON.parse(decodeURI(link.id));
+    link.addEventListener('click', event => {
+        browser.runtime.sendMessage(dateInfo);
     });
+}
+
+var links = document.body.getElementsByClassName("_dateDetectorClickClass");
+for (let link of links) {
+    createEvent(link);
+}
