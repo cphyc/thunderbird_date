@@ -28,6 +28,6 @@ jobs:
       - name: Create GitHub release
         uses: Roang-zero1/github-upload-release-artifacts-action@master
         with:
-          args: web-ext-artifacts/date_detector_${TAG}.zip
+          args: web-ext-artifacts/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
