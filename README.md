@@ -2,7 +2,7 @@
 
 This addon finds dates and time references in your emails, and make them clickable to open a new event dialog window.
 
-It relies on the great [awesome chrono library](https://github.com/wanasit/chrono/tree/v1.x.x) to detect dates and times in your emails.
+It relies on the great [awesome chrono library](https://github.com/wanasit/chrono) to detect dates and times in your emails.
 
 # Installation
 
