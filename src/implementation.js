@@ -20,15 +20,12 @@ var eventCreator = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     return {
       eventCreator: {
-        async createNewEventWindow (startDateTime, endDateTime, content) {
-            cal.LOG(`[eventCreator] Creating new event with title ${this.title}`);
+        async createNewEventWindow (title, startDateTime, endDateTime) {
+            cal.LOG(`[eventCreator] Creating new event with title ${title}`);
             let startDate = cal.dtz.jsDateToDateTime(new Date(startDateTime), cal.dtz.defaultTimezone);
             let endDate = endDateTime ? cal.dtz.jsDateToDateTime(new Date(startDateTime), cal.dtz.defaultTimezone) : null;
-            scope.createEventWithDialog(null, startDate, endDate, this.title);
+            scope.createEventWithDialog(null, startDate, endDate, title);
         },
-        async setTitle (title) {
-            this.title = title;
-        }
       }
     }
   }

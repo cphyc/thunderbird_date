@@ -3,24 +3,16 @@
     "namespace": "eventCreator",
     "functions": [
       {
-        "name": "setTitle",
-        "description": "Set the current title",
-        "type": "function",
-        "async": true,
-        "parameters": [
-          {
-            "name": "title",
-            "description": "Title of the current email",
-            "type": "string"
-          }
-        ]
-      },
-      {
         "name": "createNewEventWindow",
         "description": "Create a new event.",
         "type": "function",
         "async": true,
         "parameters": [
+          {
+            "name": "title",
+            "description": "Title of the event",
+            "type": "string"
+          },
           {
             "name": "startDateTime",
             "description": "Start of the event",
