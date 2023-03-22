@@ -4,12 +4,12 @@
   "description": "Detect dates in emails and create event easily.",
   "version": "0.0.6",
   "author": "Corentin Cadiou",
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "dateDetector@cphyc.me",
-      "strict_min_version": "82.0",
-      "strict_max_version": "115.0"
-    }
+  "applications": {
+      "gecko": {
+          "id": "data-detection@cphyc.me",
+          "strict_min_version": "68.0",
+          "strict_max_version": "114.0"
+      }
   },
   "permissions": [
     "messagesModify",

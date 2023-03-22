@@ -2,9 +2,10 @@ import * as chrono from 'chrono-node';
 
 function generateLink(info) {
     let id_json = encodeURI(JSON.stringify(info));
-    return `<abbr class="_dateDetectorClickClass"
-                  title="Create event at ${info.startHuman}"
-                  id="${id_json}">${info.text}</abbr>`;
+
+    return `<abbr class="_dateDetectorClickClass" ` +
+                 `title="Create event at ${info.startHuman}" ` +
+                 `id="${id_json}">${info.text}</abbr>`;
 }
 
 
