@@ -20,6 +20,7 @@ jobs:
       - name: Check if Git tag exists
         run: "export TAG=$(git tag --points-at HEAD | cut -c 2-)"
       - run: npm ci
+      - run: npm install web-ext webpack webpack-cli
       - run: npm run build
       - name: Create release
         uses: Roang-zero1/github-create-release-action@master

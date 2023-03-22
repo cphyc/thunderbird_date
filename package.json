@@ -30,12 +30,7 @@
             "change_message.js"
         ]
     },
-    "devDependencies": {
-        "web-ext": "2.6",
-        "webpack": "4.44.2",
-        "webpack-cli": "3.3.12"
-    },
     "dependencies": {
-        "chrono-node": "2.1.8"
+        "chrono-node": "^2.6.1"
     }
 }
