@@ -22,6 +22,7 @@ jobs:
       - run: npm ci
       - run: npm install web-ext webpack webpack-cli
       - run: npm run build
+      - run: md5sum web-ext-artifacts/*.zip
       - name: Create release
         uses: Roang-zero1/github-create-release-action@v3
         env:
