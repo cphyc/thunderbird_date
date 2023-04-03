@@ -16,8 +16,29 @@ const updateDOM = async () => {
     const {subject, date} = emailDetails;
     const oldHTML = document.body.innerHTML;
     var newHTML = oldHTML;
-    
-    chrono.parse(oldHTML, date).reverse().forEach((result) => {
+
+    // Concat results
+    Array.prototype.concat(
+        chrono.en.GB.parse(oldHTML),
+        chrono.en.parse(oldHTML),
+        chrono.fr.parse(oldHTML)
+    ).filter((result, index, self) => {
+        // Make sure all previous results are before the current one
+        const thisStart = result.index;
+        const thisEnd = result.index + result.text.length;
+        console.log("INDEX", index);
+        console.log("START ", thisStart);
+        console.log("END   ", thisEnd);
+        return self.slice(0, index).filter(e => {
+            const otherStart = e.index;
+            const otherEnd = e.index + e.text.length;
+            // Make sure there is no overlap
+            return !(thisStart >= otherEnd || thisEnd <= otherStart);
+        }).length === 0;
+    }).sort(
+        // Sort by starting point (in reverse)
+        (a, b) => b.index - a.index
+    ).forEach((result) => {
         if (!result) return;
         // Now replace the element in the DOM
         let start = result.index;
