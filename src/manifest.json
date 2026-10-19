@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Date detector",
   "description": "Detect dates in emails and create event easily.",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": "Corentin Cadiou",
   "browser_specific_settings": {
       "gecko": {

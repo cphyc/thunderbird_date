@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "types": ["node"],
+    "strict": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "outDir": ".build/runtime"
+  },
+  "files": [
+    "src/globals.d.ts",
+    "src/background.ts",
+    "src/implementation.ts",
+    "src/options.ts"
+  ]
+}

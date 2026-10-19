@@ -21,7 +21,7 @@ Note that if you install this way, no updates will appear. Instead, you will hav
 # Building
 
 You can also build the extension yourself.
-The building requires `nodejs` and `npm` to be installed. The extension relies on the generation of a bundle (which will appear in the `web-ext-artifacts` folder). In order to generate it, please ensure you have the `webpack`, `webpack-cli` and `web-ext` packages installed (these can be installed using `npm install webpack webpack-cli web-ext`). Then execute the following lines
+The build requires `nodejs` and `npm`. The extension source is written in TypeScript and compiled before bundling and packaging. Install the project dependencies and run:
 ```bash
 # Clone the repository
 git clone https://github.com/cphyc/thunderbird_date.git
@@ -31,9 +31,10 @@ cd thunderbird_date
 npm install
 # Generate both .xpi files
 npm run build
-# or alternatively
-npm run bundle  # will bundle all .js files into one
-npm run webext  # creates both variant packages
+# Check types and run tests
+npm test
+# Type-check without running tests
+npm run typecheck
 ```
 
 The build writes two packages to `web-ext-artifacts/`:

@@ -42,6 +42,18 @@ function buildTarget(target) {
     try {
         fs.cpSync(sourceDirectory, temporarySource, { recursive: true });
 
+        for (const entry of fs.readdirSync(temporarySource, { withFileTypes: true })) {
+            if (entry.isFile() && (entry.name.endsWith(".ts") || entry.name.endsWith(".d.ts"))) {
+                fs.rmSync(path.join(temporarySource, entry.name));
+            }
+        }
+        for (const runtimeFile of ["background.js", "implementation.js", "options.js"]) {
+            fs.copyFileSync(
+                path.join(projectRoot, ".build", "runtime", runtimeFile),
+                path.join(temporarySource, runtimeFile),
+            );
+        }
+
         const manifestPath = path.join(temporarySource, "manifest.json");
         const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
         const transformedManifest = manifestForTarget(

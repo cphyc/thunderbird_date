@@ -1,16 +1,18 @@
 {
     "name": "thunderbird_date",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Detect dates in emails and create event easily.",
     "main": "background.js",
     "scripts": {
-        "bundle": "webpack",
+        "compile": "tsc -p tsconfig.json && tsc -p tsconfig.runtime.json",
+        "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.runtime.json",
+        "bundle": "npm run compile && webpack",
         "webext": "node scripts/build-variants.js all",
         "build": "npm run bundle && npm run webext",
         "build:github": "npm run bundle && node scripts/build-variants.js github",
         "build:thunderbird": "npm run bundle && node scripts/build-variants.js thunderbird",
-        "lint": "web-ext lint",
-        "test": "mocha"
+        "lint": "npm run typecheck",
+        "test": "npm run typecheck && npm run compile && mocha"
     },
     "repository": {
         "type": "git",
@@ -29,15 +31,17 @@
     "webExt": {
         "sourceDir": "src",
         "ignoreFiles": [
-            "change_message.js"
+            "change_message.ts"
         ]
     },
     "dependencies": {
         "chrono-node": "^2.10.3"
     },
     "devDependencies": {
+        "@types/node": "^26.6.5",
         "jsdom": "^22.1.0",
         "mocha": "^12.0.3",
+        "typescript": "^7.0.2",
         "web-ext": "^10.8.0",
         "webpack": "^5.96.1",
         "webpack-cli": "^5.1.4"

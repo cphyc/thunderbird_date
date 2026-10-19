@@ -9,7 +9,7 @@ const {
     installDateClickHandler,
     linkifyDates,
     supportedLanguages,
-} = require("../src/date_detection");
+} = require("../.build/date_detection.js");
 const { manifestForTarget } = require("../scripts/build-variants");
 
 const referenceDate = new Date("2025-01-01T12:00:00Z");
@@ -26,7 +26,7 @@ function loadBackground(browser) {
         listeners.message = listener;
     };
     vm.runInNewContext(
-        fs.readFileSync(path.join(__dirname, "../src/background.js"), "utf8"),
+        fs.readFileSync(path.join(__dirname, "../.build/runtime/background.js"), "utf8"),
         context,
     );
     return listeners;
@@ -98,7 +98,7 @@ describe("date detection", () => {
             },
         };
         vm.runInNewContext(
-            fs.readFileSync(path.join(__dirname, "../src/implementation.js"), "utf8"),
+            fs.readFileSync(path.join(__dirname, "../.build/runtime/implementation.js"), "utf8"),
             context,
         );
         const api = new context.eventCreator().getAPI({});
