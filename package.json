@@ -5,8 +5,10 @@
     "main": "background.js",
     "scripts": {
         "bundle": "webpack",
-        "webext": "web-ext build --overwrite-dest --filename date_detector.xpi",
+        "webext": "node scripts/build-variants.js all",
         "build": "npm run bundle && npm run webext",
+        "build:github": "npm run bundle && node scripts/build-variants.js github",
+        "build:thunderbird": "npm run bundle && node scripts/build-variants.js thunderbird",
         "lint": "web-ext lint",
         "test": "mocha"
     },

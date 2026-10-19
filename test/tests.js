@@ -10,6 +10,7 @@ const {
     linkifyDates,
     supportedLanguages,
 } = require("../src/date_detection");
+const { manifestForTarget } = require("../scripts/build-variants");
 
 const referenceDate = new Date("2025-01-01T12:00:00Z");
 
@@ -40,6 +41,22 @@ describe("date detection", () => {
         assert.strictEqual(manifest.manifest_version, 3);
         assert.deepStrictEqual(manifest.background.scripts, ["background.js"]);
         assert.strictEqual(manifest.background.service_worker, undefined);
+    });
+
+    it("builds open-ended GitHub and bounded Thunderbird Add-ons manifests", () => {
+        const original = JSON.parse(
+            fs.readFileSync(path.join(__dirname, "../src/manifest.json"), "utf8"),
+        );
+        const originalMaxVersion = original.browser_specific_settings.gecko.strict_max_version;
+        const githubManifest = manifestForTarget(original, "github");
+        const thunderbirdManifest = manifestForTarget(original, "thunderbird");
+
+        assert.strictEqual(githubManifest.browser_specific_settings.gecko.strict_max_version, undefined);
+        assert.strictEqual(
+            thunderbirdManifest.browser_specific_settings.gecko.strict_max_version,
+            originalMaxVersion,
+        );
+        assert.strictEqual(original.browser_specific_settings.gecko.strict_max_version, originalMaxVersion);
     });
 
     it("uses the mail window calendar function to save events in the selected calendar", async () => {

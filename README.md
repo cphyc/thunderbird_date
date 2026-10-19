@@ -29,12 +29,17 @@ git clone https://github.com/cphyc/thunderbird_date.git
 cd thunderbird_date
 # Install the requirements
 npm install
-# Generate the .xpi file for the extension
+# Generate both .xpi files
 npm run build
 # or alternatively
 npm run bundle  # will bundle all .js files into one
-npm run webext  # will create the .xpi file
+npm run webext  # creates both variant packages
 ```
 
-Once the extension has been generated, load it from `thunderbird_date/web-ext-artifacts/date_detector.xpi`.
+The build writes two packages to `web-ext-artifacts/`:
+
+- `date_detector-github.xpi` has no maximum Thunderbird version and is intended for GitHub releases.
+- `date_detector-thunderbird.xpi` includes `strict_max_version` and is intended for the Thunderbird Add-ons site. Set the value in `src/manifest.json` before building, or override it with `TB_STRICT_MAX_VERSION`.
+
+To build just one package, run `npm run build:github` or `npm run build:thunderbird`. Install the GitHub variant from `web-ext-artifacts/date_detector-github.xpi`.
 Note that if you install this way, you need to manually update the repository, rebuild the extension and reload it in Thunderbird in order to update it.
