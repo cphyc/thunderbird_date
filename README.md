@@ -1,8 +1,10 @@
 # Thunderbird date
 
 This addon finds dates and time references in your emails, and make them clickable to open a new event dialog window.
+It requires Thunderbird 128 or later and uses Manifest V3.
 
 It relies on the great [awesome chrono library](https://github.com/wanasit/chrono) to detect dates and times in your emails.
+All date-detection languages supported by chrono-node are enabled by default. To select languages, open the Date detector preferences from Thunderbird's Add-ons Manager. Changes apply when opening messages after saving.
 
 # Installation
 
@@ -10,8 +12,8 @@ It relies on the great [awesome chrono library](https://github.com/wanasit/chron
 The extension is _not yet_ available on the Thunderbird store.
 You can however manually install the extension as follows:
 1. head to the [release](https://github.com/cphyc/thunderbird_date/releases) section,
-2. download the latest `.zip` file,
-3. in the Add-ons Manager of Thunderbird, click on "Install Add-on From File..." and select the downloaded `.zip` file.
+2. download the latest `.xpi` file,
+3. in the Add-ons Manager of Thunderbird, click on "Install Add-on From File..." and select the downloaded `.xpi` file.
 ![Alt text](/imgs/installation.png?raw=true "Install add-on from file")
 
 Note that if you install this way, no updates will appear. Instead, you will have to return to this page, download the latest release and reload it in Thunderbird in order to update it.
@@ -27,12 +29,12 @@ git clone https://github.com/cphyc/thunderbird_date.git
 cd thunderbird_date
 # Install the requirements
 npm install
-# Generate the .zip file for the extension
+# Generate the .xpi file for the extension
 npm run build
 # or alternatively
 npm run bundle  # will bundle all .js files into one
-npm run webext  # will create the .zip file
+npm run webext  # will create the .xpi file
 ```
 
-Once the extension has been generated, load in from `thunderbird_date/web-ext-artifacts/`.
+Once the extension has been generated, load it from `thunderbird_date/web-ext-artifacts/date_detector.xpi`.
 Note that if you install this way, you need to manually update the repository, rebuild the extension and reload it in Thunderbird in order to update it.

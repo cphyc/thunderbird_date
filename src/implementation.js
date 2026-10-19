@@ -1,20 +1,16 @@
-var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-var { cal } = ChromeUtils.import("resource:///modules/calendar/calUtils.jsm");
-var Services = globalThis.Services || ChromeUtils.import(
-  "resource://gre/modules/Services.jsm"
-).Services;
+var { ExtensionCommon } = ChromeUtils.importESModule("resource://gre/modules/ExtensionCommon.sys.mjs");
+var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
 
-// Prepare the scope to be able to open a new calendar event
-var scope = {};
-scope.window = Services.wm.getMostRecentWindow("mail:3pane");
-scope.document = scope.window.document;
-scope.openDialog = scope.window.openDialog.bind(scope.window);
-
-// Load the relevant scripts
-Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-management.js", scope, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-views-utils.js", scope, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-item-editing.js", scope, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://global/content/globalOverlay.js", scope, "UTF-8");
+function getCalendarWindow() {
+  var window = Services.wm.getMostRecentWindow("mail:3pane");
+  if (!window) {
+    throw new Error("Could not find the Thunderbird mail window");
+  }
+  if (typeof window.createEventWithDialog !== "function") {
+    throw new Error("Thunderbird did not expose the calendar event dialog in the mail window");
+  }
+  return window;
+}
 
 
 // Build the experiment API
@@ -23,10 +19,10 @@ var eventCreator = class extends ExtensionCommon.ExtensionAPI {
     return {
       eventCreator: {
         async createNewEventWindow (title, startDateTime, endDateTime) {
-            cal.LOG(`[eventCreator] Creating new event with title ${title}`);
+            var window = getCalendarWindow();
             let startDate = cal.dtz.jsDateToDateTime(new Date(startDateTime), cal.dtz.defaultTimezone);
-            let endDate = endDateTime ? cal.dtz.jsDateToDateTime(new Date(startDateTime), cal.dtz.defaultTimezone) : null;
-            scope.createEventWithDialog(null, startDate, endDate, title);
+            let endDate = endDateTime ? cal.dtz.jsDateToDateTime(new Date(endDateTime), cal.dtz.defaultTimezone) : null;
+            window.createEventWithDialog(null, startDate, endDate, title);
         },
       }
     }

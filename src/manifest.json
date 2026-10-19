@@ -1,24 +1,28 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Date detector",
   "description": "Detect dates in emails and create event easily.",
-  "version": "0.0.7",
+  "version": "0.0.15",
   "author": "Corentin Cadiou",
   "browser_specific_settings": {
       "gecko": {
           "id": "data-detection@cphyc.me",
-          "strict_min_version": "68.0",
-          "strict_max_version": "117.*"
+          "strict_min_version": "128.0"
       }
   },
   "permissions": [
-    "messagesModify",
-    "messagesRead"
+    "messagesRead",
+    "scripting",
+    "storage"
   ],
   "background": {
     "scripts": [
       "background.js"
     ]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
   "experiment_apis": {
     "eventCreator": {

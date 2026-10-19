@@ -1,14 +1,14 @@
 {
     "name": "thunderbird_date",
-    "version": "0.0.7",
+    "version": "0.0.15",
     "description": "Detect dates in emails and create event easily.",
     "main": "background.js",
     "scripts": {
         "bundle": "webpack",
-        "webext": "web-ext build",
+        "webext": "web-ext build --overwrite-dest --filename date_detector.xpi",
         "build": "npm run bundle && npm run webext",
         "lint": "web-ext lint",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "mocha"
     },
     "repository": {
         "type": "git",
@@ -31,6 +31,13 @@
         ]
     },
     "dependencies": {
-        "chrono-node": "^2.6.1"
+        "chrono-node": "^2.10.3"
+    },
+    "devDependencies": {
+        "jsdom": "^22.1.0",
+        "mocha": "^12.0.3",
+        "web-ext": "^10.8.0",
+        "webpack": "^5.96.1",
+        "webpack-cli": "^5.1.4"
     }
 }

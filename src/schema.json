@@ -4,7 +4,7 @@
     "functions": [
       {
         "name": "createNewEventWindow",
-        "description": "Create a new event.",
+        "description": "Open the Thunderbird calendar event dialog.",
         "type": "function",
         "async": true,
         "parameters": [

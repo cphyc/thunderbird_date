@@ -1,0 +1,27 @@
+body {
+    font: message-box;
+    margin: 2rem auto;
+    max-width: 42rem;
+    padding: 0 1rem;
+}
+
+fieldset {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.language-option {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+#status {
+    min-height: 1.25em;
+}
