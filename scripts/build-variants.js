@@ -1,4 +1,4 @@
-const { execFileSync } = require("child_process");
+const JSZip = require("jszip");
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
@@ -6,7 +6,6 @@ const path = require("path");
 const projectRoot = path.resolve(__dirname, "..");
 const sourceDirectory = path.join(projectRoot, "src");
 const artifactsDirectory = path.join(projectRoot, "web-ext-artifacts");
-const webExtCli = path.join(projectRoot, "node_modules", "web-ext", "bin", "web-ext.js");
 
 function manifestForTarget(sourceManifest, target, maxVersionOverride) {
     const manifest = JSON.parse(JSON.stringify(sourceManifest));
@@ -32,7 +31,7 @@ function manifestForTarget(sourceManifest, target, maxVersionOverride) {
     return manifest;
 }
 
-function buildTarget(target) {
+async function buildTarget(target) {
     const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "date-detector-"));
     const temporarySource = path.join(temporaryDirectory, "src");
     const outputFilename = target === "github"
@@ -63,36 +62,47 @@ function buildTarget(target) {
         );
         fs.writeFileSync(manifestPath, `${JSON.stringify(transformedManifest, null, 2)}\n`);
 
-        execFileSync(process.execPath, [
-            webExtCli,
-            "build",
-            "--source-dir",
-            temporarySource,
-            "--artifacts-dir",
-            artifactsDirectory,
-            "--filename",
-            outputFilename,
-            "--overwrite-dest",
-            "--no-config-discovery",
-            "--ignore-files=change_message.js",
-        ], { stdio: "inherit" });
+        const archive = new JSZip();
+        function addDirectory(directory, prefix = "") {
+            for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+                const filename = path.join(directory, entry.name);
+                const archivePath = prefix + entry.name;
+                if (entry.isSymbolicLink()) {
+                    throw new Error(`Cannot package symbolic link: ${archivePath}`);
+                } else if (entry.isDirectory()) {
+                    addDirectory(filename, archivePath + "/");
+                } else if (entry.isFile() && entry.name !== "change_message.js") {
+                    archive.file(archivePath, fs.readFileSync(filename));
+                }
+            }
+        }
+        addDirectory(temporarySource);
+        fs.mkdirSync(artifactsDirectory, { recursive: true });
+        fs.writeFileSync(path.join(artifactsDirectory, outputFilename), await archive.generateAsync({
+            type: "nodebuffer",
+            compression: "DEFLATE",
+        }));
+        console.log(`Built ${outputFilename}`);
     } finally {
         fs.rmSync(temporaryDirectory, { recursive: true, force: true });
     }
 }
 
-function main() {
+async function main() {
     const target = process.argv[2] || "all";
     if (target === "all") {
-        buildTarget("github");
-        buildTarget("thunderbird");
+        await buildTarget("github");
+        await buildTarget("thunderbird");
     } else {
-        buildTarget(target);
+        await buildTarget(target);
     }
 }
 
 if (require.main === module) {
-    main();
+    main().catch((error) => {
+        console.error(error);
+        process.exitCode = 1;
+    });
 }
 
 module.exports = { manifestForTarget };

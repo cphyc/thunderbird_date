@@ -28,12 +28,6 @@
         "url": "https://github.com/cphyc/thunderbird_date/issues"
     },
     "homepage": "https://github.com/cphyc/thunderbird_date#readme",
-    "webExt": {
-        "sourceDir": "src",
-        "ignoreFiles": [
-            "change_message.ts"
-        ]
-    },
     "dependencies": {
         "chrono-node": "^2.10.3"
     },
@@ -42,8 +36,14 @@
         "jsdom": "^22.1.0",
         "mocha": "^12.0.3",
         "typescript": "^7.0.2",
-        "web-ext": "^10.8.0",
         "webpack": "^5.96.1",
-        "webpack-cli": "^5.1.4"
+        "webpack-cli": "^5.1.4",
+        "jszip": "^3.10.2"
+    },
+    "allowScripts": {
+        "core-js@2.6.12": true,
+        "core-js@3.6.5": true,
+        "spawn-sync@1.0.15": true,
+        "dtrace-provider@0.8.8": true
     }
 }

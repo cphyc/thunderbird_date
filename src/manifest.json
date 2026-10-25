@@ -5,11 +5,11 @@
   "version": "0.0.16",
   "author": "Corentin Cadiou",
   "browser_specific_settings": {
-      "gecko": {
-          "id": "data-detection@cphyc.me",
-          "strict_min_version": "128.0",
-          "strict_max_version": "160.0"
-      }
+    "gecko": {
+      "id": "data-detection@cphyc.me",
+      "strict_min_version": "128.0",
+      "strict_max_version": "160.0"
+    }
   },
   "permissions": [
     "messagesRead",
@@ -40,5 +40,9 @@
         "script": "implementation.js"
       }
     }
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
   }
 }

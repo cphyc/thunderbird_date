@@ -21,14 +21,14 @@ Note that if you install this way, no updates will appear. Instead, you will hav
 # Building
 
 You can also build the extension yourself.
-The build requires `nodejs` and `npm`. The extension source is written in TypeScript and compiled before bundling and packaging. Install the project dependencies and run:
+The build requires Node.js 24 or later and `npm`. The extension source is written in TypeScript and compiled before bundling and packaging. Install the project dependencies and run:
 ```bash
 # Clone the repository
 git clone https://github.com/cphyc/thunderbird_date.git
 # Move into the newly-created folder
 cd thunderbird_date
 # Install the requirements
-npm install
+npm ci
 # Generate both .xpi files
 npm run build
 # Check types and run tests
